@@ -1,0 +1,21 @@
+schema:
+  - http://localhost:5000/api/graphql
+documents: 
+  graphQL/gql/**/*.ts
+hooks:
+  afterOneFileWrite:
+    - eslint --fix  
+generates:
+  graphQL/gql-api.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-query"
+    config:
+      fetcher: graphQL/gql-req#gqlReq
+      errorType: '{ response: { data: { [key: string]: unknown }, status:number } }'
+      scalars: 
+          Datetime: Date
+          
+
+

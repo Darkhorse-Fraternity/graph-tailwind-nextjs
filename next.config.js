@@ -1,11 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // swcMinify: true,
+  swcMinify: true,
   reactStrictMode: true,
   images: {
     domains: ['images.unsplash.com', 'iph.href.lu'],
   },
-  env: {},
+  env: {
+    GRAGHQL_BACKEND_URL: `/api/graphql`,
+  },
   redirects: async () => {
     return [
       {

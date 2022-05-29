@@ -49,11 +49,10 @@ const LoginContainer: FC = ({ children }) => {
 }
 
 const LoginForm: FC = () => {
-  const { isLoading, mutate } = useAxiosMutation<LoginPostResponse,LoginPostReuqest>(
-     '/api/sign',
-    {},
-    'POST'
-  )
+  const { isLoading, mutate } = useAxiosMutation<
+    LoginPostResponse,
+    LoginPostReuqest
+  >('/api/sign', {}, 'POST')
   const router = useRouter()
   const onSubmit: SubmitType = async (data) => {
     await mutate(data)
@@ -67,8 +66,6 @@ const LoginForm: FC = () => {
     mode: 'onBlur',
     resolver: yupResolver(schema),
   })
-
-  console.log('errors', errors)
 
   return (
     <form className="mt-8 space-y-6" onSubmit={handleSubmit(onSubmit)}>

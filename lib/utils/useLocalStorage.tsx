@@ -17,6 +17,7 @@ export function useLocalStorage(key: string, initialValue: any) {
       // Parse stored json or if none return initialValue
     } catch (error) {
       // If error also return initialValue
+      // eslint-disable-next-line no-console
       console.log(error)
       return initialValue
     }
@@ -34,6 +35,7 @@ export function useLocalStorage(key: string, initialValue: any) {
         window.localStorage.setItem(key, JSON.stringify(value))
       } catch (error) {
         // A more advanced implementation would handle the error case
+        // eslint-disable-next-line no-console
         console.log(error)
       }
     },

@@ -2,10 +2,10 @@ import Layout from 'components/nav/layout'
 import React, { FC } from 'react'
 import { NextPageWithLayout } from 'types/page'
 import Table from '../components/table'
-import { SelectColumnFilter } from '../components/table/filter'
 import Image from 'next/image'
 import { Cell, CellProps, Column, TableInstance } from 'react-table'
 import classNames from 'classnames'
+import { useFindMoviesQuery } from 'graphQL/gql-api'
 
 const getData = () => {
   const data = [
@@ -134,7 +134,21 @@ type Data = {
   imgUrl: string
 }
 
+// export const FindMoviesDocument = `
+//     query findMovies {
+//   movies {
+//     title
+//     tagline
+//     actors {
+//       name
+//     }
+//   }
+// }
+//     `
+
 const Accounts: NextPageWithLayout = () => {
+  const { data: movies } = useFindMoviesQuery()
+
   const columns: Column<Data>[] = React.useMemo(
     () => [
       {
@@ -151,7 +165,6 @@ const Accounts: NextPageWithLayout = () => {
       {
         Header: 'Status',
         accessor: 'status',
-        Filter: SelectColumnFilter, // new
         Cell: StatusPill,
       },
       {
@@ -161,7 +174,6 @@ const Accounts: NextPageWithLayout = () => {
       {
         Header: 'Role',
         accessor: 'role',
-        Filter: SelectColumnFilter, // new
         filter: 'includes',
       },
     ],
@@ -171,12 +183,12 @@ const Accounts: NextPageWithLayout = () => {
   const data = React.useMemo(() => getData(), [])
 
   const onClick = (e: TableInstance<Data>) => {
-    console.log(
-      'e',
-      e.selectedFlatRows
-        .map((v) => `'${v.original.name} ${v.original.email}'`)
-        .join(', ')
-    )
+    // console.log(
+    //   'e',
+    //   e.selectedFlatRows
+    //     .map((v) => `'${v.original.name} ${v.original.email}'`)
+    //     .join(', ')
+    // )
   }
 
   return (

@@ -11,5 +11,5 @@
 }
   
 .dmc-react-select {
-  @apply !text-sm   !dmc-form-select-child 
+  @apply !text-sm   
 }

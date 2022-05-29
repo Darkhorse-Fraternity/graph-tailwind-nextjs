@@ -19,9 +19,7 @@ function MyApp({ Component, pageProps, router }: AppPropsWithLayout) {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ErrorBoundary>
-          {getLayout(<Component {...pageProps} />)}
-      </ErrorBoundary>
+      <ErrorBoundary>{getLayout(<Component {...pageProps} />)}</ErrorBoundary>
       <ReactQueryDevtools initialIsOpen={false} />
       <CToaster />
     </QueryClientProvider>
